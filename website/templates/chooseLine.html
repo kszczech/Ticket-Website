@@ -1,0 +1,39 @@
+{% extends "base.html" %} {% block title %}Home{% endblock %} {% block content
+%}
+<h1 align="center">Dostepne linie</h1>
+<ul class="list-group list-group-flush" id="notes">
+  {% for line in line_info %}
+  <li class="list-group-item">
+    <h3>Numer lini </h3>
+    {{ line['line_id'] }}
+    <br>
+    <h3>Godzina odjazdu </h3>
+    {{ line['time_departure'] }}
+    <br>
+    <h3>Godzina przyjazdu </h3>
+    {{ line['time_arrival'] }}
+    <br>
+    <h3>Cena za bilet</h3>
+    {{ line['price'] }} zl
+    <br>
+    <h3>Liczba dostepnych miejsc </h3>
+    {{ line['seat_num'] }}
+    <br>
+    <h3>Data odjazdu </h3>
+    {{arrival_date}}
+    <br>
+    <h3>Cena sumarycznie</h3>
+    {{ (line['price'] * num_ticket)|round(2) }} zł
+    <br>
+    {% if line['seat_num'] == 0 or num_ticket > line['seat_num'] %}
+      <span class="badge badge-danger">Brak dostepnych miejsc</span>
+    {% else %}
+      <button type="button" class="btn btn-success" onClick="buyTicket( {{ line['line_id'] }}, '{{arrival_date}}', {{line['seat_list']}}, '{{destination_station}}', '{{starting_station}}', {{line['price']}}, {{num_ticket}})" >
+        <span aria-hidden="true">Kup bilet</span>
+      </button>
+    {% endif %}
+  </li>
+  {% endfor %}
+</ul>
+
+{% endblock %}

@@ -1,0 +1,46 @@
+{% extends "base.html" %} {% block title %}Sign Up{% endblock %} {% block
+content %}
+<form method="POST">
+  <h3 align="center">Wyszukaj połaczenie</h3>
+  <div class="form-group">
+    <label for="starting_station">Stacja początkowa</label>
+    <select name="starting_station" id="starting_station">
+      {% for station in station_list %}
+        <option value="{{station}}">{{station}}</option>
+      {% endfor %}
+    </select>
+  </div>
+  <div class="form-group">
+    <label for="destination_station">Stacja koncowa</label>
+    <select name="destination_station" id="destination_station">
+      {% for station in station_list %}
+        <option value="{{station}}">{{station}}</option>
+      {% endfor %}
+    </select>
+  </div>
+    <div class="form-group">
+    <label for="arrival_date">Dzien podróży</label>
+    <input
+      type="date"
+      class="form-control"
+      id="arrival_date"
+      name="arrival_date"
+      placeholder="Arival_date"
+    />
+  </div>
+      <div class="form-group">
+    <label for="num_ticket">Liczba biletów</label>
+    <input
+      type="number"
+      class="form-control"
+      id="num_ticket"
+      name="num_ticket"
+      placeholder="Liczba biletów"
+      min="1" max="100"
+    />
+  </div>
+  <br />
+  <button type="submit" class="btn btn-primary">Wyszukaj</button>
+  </div>
+</form>
+{% endblock %}

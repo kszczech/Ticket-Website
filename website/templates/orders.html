@@ -1,0 +1,28 @@
+{% extends "base.html" %} {% block title %}Home{% endblock %} {% block content
+%}
+<h1 align="center">Historia zamowień</h1>
+<ul class="list-group list-group-flush" id="orders">
+  {% for i in range(length) %}
+  <li class="list-group-item">
+    <h3>{{ ticket_info[i][4] }}  - {{ ticket_info[i][5] }}</h3>
+    <br>
+    <h3>{{ ticket_info[i][7] }}</h3>
+    <br>
+    <h3>Numer siedzenia:  {{ train_info[i][0] }}</h3>
+    <br>
+    <h3>Numer wagonu:  {{ train_info[i][1] }}</h3>
+    <br>
+    <h3>Typ siedzenia:  {{ train_info[i][2] }}</h3>
+    <br>
+    <h3>Nazwa pociagu:  {{ train_info[i][3] }}</h3>
+    <br>
+    <h3>Cena {{ ticket_info[i][-1] }} zl</h3>
+    <br>
+    <button type="button" class="btn btn-success" onClick="deleteTicket( {{ ticket_info[i][0] }})" >
+      <span aria-hidden="true">USUN BILET</span>
+    </button>
+  </li>
+  {% endfor %}
+</ul>
+
+{% endblock %}
